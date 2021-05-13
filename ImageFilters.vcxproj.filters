@@ -18,12 +18,18 @@
     <ClInclude Include="src\Filterer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\vec3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Filterer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vec3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

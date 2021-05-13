@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Filterer.h" />
+    <ClInclude Include="src\vec3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Filterer.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\vec3.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -1,12 +1,7 @@
 #include "Filterer.h"
 #include <iostream>
 
-#ifndef _PIXEL_
-#define _PIXEL_
 
-#define PIXEL(frame, W, x, y) (frame+(y)*3*(W)+(x)*3)
-
-#endif
 
 
 #define BLUR_LEVEL 12
@@ -37,30 +32,50 @@ up:
 	cout << "4- Gaussian Blur\n";
 
 	cin >> c;
-	Filterer filterer;
+	Filterer* filterer = new Filterer;
+
 	std::string insertee;
+	std::string result;
+	int ind;
+
 	Mat outputImg(image.size(),image.type());
 	switch (c)
 	{
 	case '1':
 		insertee = "BlackWhite";
-		filterer.BlackAndWhite(image, width, height);
+		filterer -> BlackAndWhite(image, width, height);
+
+		ind = imagename.find('.', 1);
+		result = imagename.insert(ind, insertee);
+		filterer->WriteToFile(image, result);
+		cout << result << " written\n";
 		break;
 	case '2':
 		insertee = "Highlighted";
-		filterer.BlackHighligtedWhite(image, width, height);
+		filterer -> BlackHighligtedWhite(image, width, height);
+
+		ind = imagename.find('.', 1);
+		result = imagename.insert(ind, insertee);
+		filterer->WriteToFile(image, result);
+		cout << result << " written\n";
 		break;
 	case '3':
 		insertee = "Inverted";
-		filterer.InvertImage(image, width, height);
+		filterer -> InvertImage(image, width, height);
+
+		ind = imagename.find('.', 1);
+		result = imagename.insert(ind, insertee);
+		filterer->WriteToFile(image, result);
+		cout << result << " written\n";
 		break;
 	case '4':
 		insertee = "Blurred";
-		for (int i = 0; i < BLUR_LEVEL; i++)
-		{
-			filterer.GaussianBlur(image, width, height, outputImg);
-			filterer.GaussianBlur(outputImg, width, height, image);
-		}
+		filterer -> GaussianBlur(image, width, height,outputImg, 10, 10);
+
+		ind = imagename.find('.', 1);
+		result = imagename.insert(ind, insertee);
+		filterer->WriteToFile(outputImg, result);
+		cout << result << " written\n";
 		break;
 	default:
 		break;
@@ -68,11 +83,7 @@ up:
 	}
 	
 
-	int ind = imagename.find('.', 1);
-	std::string result = imagename.insert(ind, insertee);
-
-	cv::imwrite(result, image);
-	cout << result << " written\n";
+	
 	return 0;
 
 }
